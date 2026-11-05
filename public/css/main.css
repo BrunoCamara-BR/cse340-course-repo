@@ -139,15 +139,15 @@ main li strong {
 }
 
 /* Category links on the categories page */
-body > nav:nth-of-type(2) {
+main > nav {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  width: min(960px, calc(100% - 2rem));
-  margin: 2.5rem auto;
+  width: 100%;
+  margin: 1.5rem 0 0;
 }
 
-body > nav:nth-of-type(2) a {
+main > nav a {
   padding: 1.25rem;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -157,7 +157,7 @@ body > nav:nth-of-type(2) a {
   text-decoration: none;
 }
 
-body > nav:nth-of-type(2) a:hover {
+main > nav a:hover {
   border-color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -192,8 +192,8 @@ footer p {
     padding: 1.5rem;
   }
 
-  body > nav:nth-of-type(2) {
+  main > nav {
     grid-template-columns: 1fr;
-    margin: 1.25rem auto;
+    margin-top: 1rem;
   }
 }

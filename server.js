@@ -32,19 +32,16 @@ app.use(express.static(path.join(__dirname, "public")));
  */
 
 app.get("/", (req, res) => {
-  // res.render(path.join(__dirname, "src/views/home.html"));
   const title = "Home";
   res.render("home", { title });
 });
 
 app.get("/organizations", (req, res) => {
-  // res.render(path.join(__dirname, "src/views/organizations.html"));
   const title = "Our partner Organizations";
   res.render("organizations", { title });
 });
 
 app.get("/projects", (req, res) => {
-  // res.render(path.join(__dirname, "src/views/projects.html"));
   const title = "Service Projects";
   res.render("projects", { title });
 });
