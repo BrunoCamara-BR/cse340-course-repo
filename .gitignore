@@ -147,3 +147,9 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Codex for authorized AI code generator
+.codex
+# Trail-code for saving tokens
+.trail
+AGENTS.md
