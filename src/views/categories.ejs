@@ -2,13 +2,14 @@
 
     <main>
         <h1>
-                <%= title %>
+            <%= title %>
         </h1>
         <nav>
-            <a href="#">Environmental</a>
-            <a href="#">Educational</a>
-            <a href="#">Community Service</a>
-            <a href="#">Health and Wellness</a>
+            <% categories.forEach( category=> {%>
+                <a href="#">
+                    <%= category.name %>
+                </a>
+                <% }); %>
         </nav>
     </main>
 

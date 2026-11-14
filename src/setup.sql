@@ -107,3 +107,68 @@ VALUES
 (3, 'Clothing Donation Event',
  'Organize clothing donations for local shelters.',
  'Sandy, UT', '2027-03-20');
+
+
+
+-- ========================================
+-- Category Table
+-- ========================================
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL UNIQUE
+);
+
+
+-- ========================================
+-- Insert sample data: Categories
+-- ========================================
+INSERT INTO category (name)
+VALUES
+    ('Environmental'),
+    ('Education'),
+    ('Community Service'),
+    ('Health and Wellness');
+
+
+-- ========================================
+-- Project Category Table
+-- ========================================
+CREATE TABLE project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+
+    PRIMARY KEY (project_id, category_id),
+
+    FOREIGN KEY (project_id)
+        REFERENCES project(project_id),
+
+    FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
+);
+
+
+-- ========================================
+-- Insert Project Categories
+-- ========================================
+INSERT INTO project_category (project_id, category_id)
+VALUES
+-- BrightFuture Builders
+(1, 3),
+(2, 3),
+(3, 3),
+(4, 2),
+(5, 1),
+
+-- GreenHarvest Growers
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 2),
+(10, 1),
+
+-- UnityServe Volunteers
+(11, 3),
+(12, 4),
+(13, 1),
+(14, 2),
+(15, 3);
