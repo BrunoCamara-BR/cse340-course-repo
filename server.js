@@ -41,10 +41,10 @@ app.use((req, res, next) => {
 
 // Middleware to make NODE_ENV available to all templates
 
-app.use( (req, res, next) => {
+app.use((req, res, next) => {
   res.locals.NODE_ENV = NODE_ENV;
   next();
-} )
+});
 
 /**
  * Routes
@@ -72,6 +72,41 @@ app.get("/categories", async (req, res) => {
   const title = "Categories";
   const categories = await getAllCategories();
   res.render("categories", { title, categories });
+});
+
+// Test route for 500 erros
+app.get("/test-error", (req, res, next) => {
+  const err = new Error("This is a test error");
+  err.status = 500;
+  next(err);
+});
+
+// Catch-all route for 404 erros
+app.use((req, res, next) => {
+  const err = new Error("Page Not Found");
+  err.status = 404;
+  next(err);
+});
+
+// Global error handle
+app.use((err, req, res, next) => {
+  // Log error details for debugging
+  console.error("Error occurred:", err.message);
+  console.error("Stack trace:", err.stack);
+
+  // Determine status and template
+  const status = err.status || 500;
+  const template = status === 404 ? "404" : "500";
+
+    // Prepare data for the template
+    const context = {
+        title: status === 404 ? 'Page Not Found' : 'Server Error',
+        error: err.message,
+        stack: err.stack
+    };
+
+  // Render the appropriate error template
+  res.status(status).render(`errors/${template}`, context);
 });
 
 app.listen(PORT, async () => {
