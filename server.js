@@ -2,9 +2,7 @@ import express from "express";
 import { fileURLToPath } from "url";
 import path from "path";
 import { testConnection } from "./src/models/db.js";
-import { getAllOrganizations } from "./src/models/organizations.js";
-import { getAllProjects } from "./src/models/projects.js";
-import { getAllCategories } from "./src/models/categories.js";
+import router from "./src/routes.js";
 
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || "production";
 const PORT = process.env.PORT || 3000;
@@ -50,36 +48,8 @@ app.use((req, res, next) => {
  * Routes
  */
 
-app.get("/", (req, res) => {
-  const title = "Home";
-  res.render("home", { title });
-});
-
-app.get("/organizations", async (req, res) => {
-  const organizations = await getAllOrganizations();
-
-  const title = "Our partner Organizations";
-  res.render("organizations", { title, organizations });
-});
-
-app.get("/projects", async (req, res) => {
-  const title = "Service Projects";
-  const projects = await getAllProjects();
-  res.render("projects", { title, projects });
-});
-
-app.get("/categories", async (req, res) => {
-  const title = "Categories";
-  const categories = await getAllCategories();
-  res.render("categories", { title, categories });
-});
-
-// Test route for 500 erros
-app.get("/test-error", (req, res, next) => {
-  const err = new Error("This is a test error");
-  err.status = 500;
-  next(err);
-});
+// Use the imported handle routers
+app.use(router);
 
 // Catch-all route for 404 erros
 app.use((req, res, next) => {
@@ -98,12 +68,12 @@ app.use((err, req, res, next) => {
   const status = err.status || 500;
   const template = status === 404 ? "404" : "500";
 
-    // Prepare data for the template
-    const context = {
-        title: status === 404 ? 'Page Not Found' : 'Server Error',
-        error: err.message,
-        stack: err.stack
-    };
+  // Prepare data for the template
+  const context = {
+    title: status === 404 ? "Page Not Found" : "Server Error",
+    error: err.message,
+    stack: err.stack
+  };
 
   // Render the appropriate error template
   res.status(status).render(`errors/${template}`, context);
