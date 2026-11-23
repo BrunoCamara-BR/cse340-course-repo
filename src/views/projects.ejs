@@ -3,18 +3,19 @@
         <h1>
             <%= title %>
         </h1>
-        <!-- Put your page-specific content here -->
-        <h2>Upcoming Service Projects</h2>
+
+        <h2> The next five upcoming projects</h2>
         <ul>
             <% projects.forEach( project=> {%>
                 <li>
-                    <%= project.date.toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                        timeZone: "UTC"
-                    } ) %>: 
-                    <%= project.title %> ( <%= project.name  %> ) 
+                    <%= project.date.toLocaleDateString("en-US", { month: "short" , day: "numeric" , year: "numeric" ,
+                        timeZone: "UTC" } ) %>:
+                        (<a href="/organization/<%=project.organization_id%>">
+                            <%= project.organization_name %>
+                        </a> )
+                        <a href="/project/<%=project.project_id%>">
+                            <%= project.title %>
+                        </a>
                 </li>
 
                 <% }); %>
