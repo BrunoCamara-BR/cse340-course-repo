@@ -6,7 +6,7 @@
         </h1>
         <nav>
             <% categories.forEach( category=> {%>
-                <a href="#">
+                <a href="/category/<%=category.category_id%>">
                     <%= category.name %>
                 </a>
                 <% }); %>

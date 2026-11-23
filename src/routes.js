@@ -3,9 +3,9 @@ import express from "express";
 import { showHomePage } from "./controllers/index.js";
 import { showOrganizationsPage } from "./controllers/organizations.js";
 import { showProjectsPage, showProjectDetailsPage } from "./controllers/projects.js";
-import { showCategoriesPage } from "./controllers/categories.js";
+import { showCategoriesPage,showCategoryPage } from "./controllers/categories.js";
 import { testErroPage } from "./controllers/erros.js";
-import { showOrganizationDetailsPage } from "./controllers/organizations.js"
+import { showOrganizationDetailsPage } from "./controllers/organizations.js";
 
 const router = express.Router();
 
@@ -18,9 +18,12 @@ router.get("/categories", showCategoriesPage);
 router.get("/test-error", testErroPage);
 
 // Route for organization details page
-router.get("/organization/:id", showOrganizationDetailsPage)
+router.get("/organization/:id", showOrganizationDetailsPage);
 
 // Router for project details page
-router.get("/project/:id", showProjectDetailsPage)
+router.get("/project/:id", showProjectDetailsPage);
+
+// Router for category details page
+router.get("/category/:id", showCategoryPage);
 
 export default router;
