@@ -1,26 +1,26 @@
 <%- include('partials/header') %>
-    <main>
-        <h1>
-            <%= title %>
-        </h1>
-        <p>
-        <a href="/new-organization">Add a new organization</a>
-        </p>
+<main>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>
+    <a href="/new-organization">Add a new organization</a>
+  </p>
 
-        <p>Here are a few of our partner organizations:</p>
-        <ul>
+  <p>Here are a few of our partner organizations:</p>
+  <ul>
 
-            <% organizations.forEach(organization=> { %>
-                <li><img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo"><strong>
-                        <%= organization.name %>
-                    </strong>: <%= organization.contact_email %> <br> <strong>Description:</strong>
-                        <%= organization.description %>
-                            <a href="/organization/<%=organization.organization_id%>">
-                                <%= organization.name %>
-                            </a>
-                </li>
-                <% }); %>
-        </ul>
-    </main>
+    <% organizations.forEach(organization=> { %>
+    <li><img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo"><strong>
+        <%= organization.name %>
+      </strong>: <%= organization.contact_email %> <br> <strong>Description:</strong>
+      <%= organization.description %>
+      <a href="/organization/<%=organization.organization_id%>">
+        <%= organization.name %>
+      </a>
+    </li>
+    <% }); %>
+  </ul>
+</main>
 
-    <%- include('partials/footer') %>
+<%- include('partials/footer') %>

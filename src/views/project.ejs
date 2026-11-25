@@ -1,44 +1,44 @@
 <%- include('partials/header') %>
-    <main>
-        <h1>
-            <%= title %>
-        </h1>
-        <ul>
-            <li>
-                <%= projectDetails.date.toLocaleDateString("en-US", { month: "short" , day: "numeric" , year: "numeric"
+<main>
+  <h1>
+    <%= title %>
+  </h1>
+  <ul>
+    <li>
+      <%= projectDetails.date.toLocaleDateString("en-US", { month: "short" , day: "numeric" , year: "numeric"
                     , timeZone: "UTC" } ) %>:
-                    <%= projectDetails.title %> <br> <strong>Description: </strong>
-                        <%= projectDetails.description %>
-                            <br>
+      <%= projectDetails.title %> <br> <strong>Description: </strong>
+      <%= projectDetails.description %>
+      <br>
 
-                            <strong>Location: </strong>
-                            <%= projectDetails.location %>
+      <strong>Location: </strong>
+      <%= projectDetails.location %>
 
-                                <br>
+      <br>
 
-                                <strong>Link: </strong>
-                                <a href="/organization/<%= projectDetails.organization_id%>">
-                                    <%=projectDetails.organization_name %>
-                                </a>
-                                <br>
+      <strong>Link: </strong>
+      <a href="/organization/<%= projectDetails.organization_id%>">
+        <%=projectDetails.organization_name %>
+      </a>
+      <br>
 
-                                <strong>Categories: </strong>
+      <strong>Categories: </strong>
 
-                                <ul>
-                                    <% categoryByProject.forEach( category=> {%>
+      <ul>
+        <% categoryByProject.forEach( category=> {%>
 
-                                        <li> <a href="/category/<%= category.category_id%>">
-                                                <%=category.name %>
-                                            </a></li>
-                                        <%} )%>
-                                </ul>
-
-
+        <li> <a href="/category/<%= category.category_id%>">
+            <%=category.name %>
+          </a></li>
+        <%} )%>
+      </ul>
 
 
 
-            </li>
-        </ul>
 
-    </main>
-    <%- include('partials/footer') %>
+
+    </li>
+  </ul>
+
+</main>
+<%- include('partials/footer') %>
